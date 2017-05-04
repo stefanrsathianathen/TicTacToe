@@ -13,7 +13,8 @@ int main(int argc, char const *argv[])
 {
 	int z = 0;
 	int turn = 1;
-
+	board();
+	
 	//The Game 
 	while(z == 0){
 		move(turn%2);
