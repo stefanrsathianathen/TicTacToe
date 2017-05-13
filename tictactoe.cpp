@@ -49,7 +49,7 @@ void move(int c){
 			cout << "It's X's turn. What position do you want (1-9)?: ";
 			cin >> choice;
 		}
-	if (boardLoc[choice] == 2 || boardLoc[choice] == 1 ){
+	if (choice < 0||choice > 9||boardLoc[choice] == 2 || boardLoc[choice] == 1 ){
 		cout << "You can't make that move\n";
 		move(c);
 	}
