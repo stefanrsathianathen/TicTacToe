@@ -6,6 +6,7 @@ void board();
 char piece(int x);
 int win();
 void move(int c);
+int computerMove();
 
 int boardLoc[10] ={5,6,7,8,9,10,11,12,13,14};
 
@@ -25,15 +26,21 @@ int main(int argc, char const *argv[])
 
 	//Prints out result to screen
 	if (z==-1){
-		cout << "Sorry it was a tie";
+		cout << "Sorry it was a tie" << endl;
 	}
 	else{
 		if((turn-1)%2 == 0){
-			cout << "Player 2 Won";
+			cout << "Player 2 Won" << endl;
 		}
 		else{
-			cout << "Player 1 won";
+			cout << "Player 1 won" << endl;
 		}
+	}
+	string response;
+	cout << "Do you want to play again?";
+	cin >> response;
+	if (response == "Yes"|| response == "yes"){
+		system("tictactoe");
 	}
 	return 0;
 }
@@ -42,14 +49,13 @@ void move(int c){
 	//if players move has already be taken prompts for another move
 	int choice;
 	if(c==0){
-			cout << "It's O's turn. What position do you want (1-9)?: ";
-			cin >> choice;
+			choice = computerMove();
 		}
 		else{
 			cout << "It's X's turn. What position do you want (1-9)?: ";
 			cin >> choice;
 		}
-	if (choice < 0||choice > 9||boardLoc[choice] == 2 || boardLoc[choice] == 1 ){
+	if (boardLoc[choice] == 2 || boardLoc[choice] == 1 ){
 		cout << "You can't make that move\n";
 		move(c);
 	}
@@ -80,6 +86,15 @@ void board(){
 	cout << "  " << piece(boardLoc[7])<< "  |  " << piece(boardLoc[8])<< "  |  " << piece(boardLoc[9]) << endl;
 	cout << "     |     |     " << endl;
 	
+}
+
+int computerMove(){
+	for(int i = 1; i <= 9; i++){
+		if (boardLoc[i] != 1 && boardLoc[i] != 2){
+			return i;
+		} 
+	}
+	return -1;
 }
 
 char piece(int x){
